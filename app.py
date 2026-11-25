@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # Chave pública do Web3Forms (web3forms.com): é ela que envia o formulário
 # no site publicado no Cloudflare. Não é secreta — foi feita para estar no HTML.
-WEB3FORMS_KEY = ""
+WEB3FORMS_KEY = "f16d4ad2-8461-44f4-a084-201d0837311f"
 
 # Endereço público do site (usado no formulário quando o JavaScript está desligado)
 SITE_URL = "https://nexusdesign.online/"
