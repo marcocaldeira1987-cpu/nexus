@@ -41,7 +41,7 @@
        ====================================================================== */
     let lenis = null;
     if (window.Lenis) {
-        lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.95 });
+        lenis = new Lenis({ lerp: 0.11, smoothWheel: true, wheelMultiplier: 1 });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(t => lenis.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
@@ -183,17 +183,18 @@
         const hero = $('.hero');
         if (!c) return { start() {} };
         const ctx = c.getContext('2d');
-        let w = 0, h = 0, dpr = 1, running = false, visible = true, t = 0, intensity = 0;
+        let w = 0, h = 0, dpr = 1, running = false, visible = true, t = 0, intensity = 0, skip = false;
+        const lowPower = innerWidth < 900 || (navigator.hardwareConcurrency || 8) <= 4;
         let mx = 0.5, my = 0.5;
         const parts = [];
 
         function size() {
-            dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+            dpr = Math.min(window.devicePixelRatio || 1, innerWidth < 900 ? 1 : 1.25);
             w = c.clientWidth; h = c.clientHeight;
             c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             parts.length = 0;
-            const n = Math.min(160, Math.round((w * h) / 12000));
+            const n = Math.min(110, Math.round((w * h) / 16000));
             for (let i = 0; i < n; i++) {
                 parts.push({ x: Math.random() * w, y: Math.random() * h, z: Math.random(), v: 0.08 + Math.random() * 0.35 });
             }
@@ -203,79 +204,64 @@
             if (!running) return;
             requestAnimationFrame(frame);
             if (!visible || document.hidden) return;
-            t += 1 / 60;
+            if (lowPower && (skip = !skip)) return;
+            t += lowPower ? 1 / 30 : 1 / 60;
             mx += ((mouse.x / innerWidth) - mx) * 0.04;
             my += ((mouse.y / innerHeight) - my) * 0.04;
 
             const L = '216,255,60';
-            const hz = h * (0.6 + (my - 0.5) * 0.05);
+            const hz = h * 0.6;                       // o brilho e o desvanecer do horizonte estão em CSS
             const vx = w * (0.5 + (mx - 0.5) * 0.3);
             ctx.clearRect(0, 0, w, h);
 
-            // brilho do horizonte
-            let g = ctx.createRadialGradient(vx, hz, 0, vx, hz, Math.max(w, h) * 0.65);
-            g.addColorStop(0, `rgba(${L},${0.26 * intensity})`);
-            g.addColorStop(0.3, `rgba(${L},${0.07 * intensity})`);
-            g.addColorStop(1, `rgba(${L},0)`);
-            ctx.fillStyle = g;
-            ctx.fillRect(0, 0, w, h);
-
-            // poeira de luz
+            // poeira de luz (2 cores, alfa por partícula)
+            ctx.fillStyle = 'rgb(230,236,226)';
             for (const p of parts) {
-                p.y -= p.v * (0.4 + p.z);
+                p.y -= p.v * (0.4 + p.z) * (lowPower ? 2 : 1);
                 if (p.y < -4) { p.y = h + 4; p.x = Math.random() * w; }
-                const d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
-                const near = Math.max(0, 1 - d / 220);
-                const a = (0.12 + p.z * 0.45 + near * 0.6) * intensity;
-                ctx.fillStyle = near > 0.05 ? `rgba(${L},${a})` : `rgba(230,236,226,${a * 0.7})`;
-                const s = 0.6 + p.z * 1.6 + near * 1.5;
+                const dx = p.x - mouse.x, dy = p.y - mouse.y;
+                p.near = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 220);
+                if (p.near > 0.05) continue;
+                ctx.globalAlpha = (0.12 + p.z * 0.45) * intensity * 0.7;
+                const s = 0.6 + p.z * 1.6;
+                ctx.fillRect(p.x, p.y, s, s);
+            }
+            ctx.fillStyle = `rgb(${L})`;
+            for (const p of parts) {
+                if (p.near <= 0.05) continue;
+                ctx.globalAlpha = Math.min(1, (0.12 + p.z * 0.45 + p.near * 0.6) * intensity);
+                const s = 0.6 + p.z * 1.6 + p.near * 1.5;
                 ctx.fillRect(p.x, p.y, s, s);
             }
 
-            // grelha do chão
+            // grelha do chão: poucas chamadas de desenho (3 grupos de intensidade)
             ctx.lineWidth = 1;
-            const cols = 26;
-            for (let i = -cols; i <= cols; i++) {
-                const a = Math.max(0, 0.28 - (Math.abs(i) / cols) * 0.22) * intensity;
-                ctx.strokeStyle = `rgba(${L},${a})`;
+            ctx.strokeStyle = `rgb(${L})`;
+            const cols = 22;
+            for (let band = 0; band < 3; band++) {
                 ctx.beginPath();
-                ctx.moveTo(vx + i * 6, hz);
-                ctx.lineTo(vx + i * (w / cols) * 1.9, h + 10);
+                for (let i = -cols; i <= cols; i++) {
+                    const b = Math.abs(i) < cols * 0.25 ? 0 : Math.abs(i) < cols * 0.6 ? 1 : 2;
+                    if (b !== band) continue;
+                    ctx.moveTo(vx + i * 6, hz);
+                    ctx.lineTo(vx + i * (w / cols) * 1.9, h + 10);
+                }
+                ctx.globalAlpha = [0.24, 0.15, 0.08][band] * intensity;
                 ctx.stroke();
             }
-            const rows = 16, off = (t * 0.35) % 1;
-            for (let k = 0; k < rows; k++) {
-                const p = (k + off) / rows;
-                const y = hz + (h - hz) * Math.pow(p, 2.3);
-                ctx.strokeStyle = `rgba(${L},${p * 0.4 * intensity})`;
-                ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+            const rows = 14, off = (t * 0.35) % 1;
+            for (let band = 0; band < 3; band++) {
+                ctx.beginPath();
+                for (let k = 0; k < rows; k++) {
+                    const p = (k + off) / rows;
+                    if (Math.min(2, Math.floor(p * 3)) !== band) continue;
+                    const y = hz + (h - hz) * Math.pow(p, 2.3);
+                    ctx.moveTo(0, y); ctx.lineTo(w, y);
+                }
+                ctx.globalAlpha = [0.1, 0.22, 0.36][band] * intensity;
+                ctx.stroke();
             }
-            // desvanecer junto ao horizonte
-            g = ctx.createLinearGradient(0, hz, 0, hz + (h - hz) * 0.45);
-            g.addColorStop(0, 'rgba(6,8,10,1)');
-            g.addColorStop(1, 'rgba(6,8,10,0)');
-            ctx.fillStyle = g;
-            ctx.fillRect(0, hz - 1, w, (h - hz) * 0.45 + 1);
-
-            // linha do horizonte
-            g = ctx.createLinearGradient(0, 0, w, 0);
-            g.addColorStop(0, `rgba(${L},0)`);
-            g.addColorStop(vx / w, `rgba(${L},${0.95 * intensity})`);
-            g.addColorStop(1, `rgba(${L},0)`);
-            ctx.save();
-            ctx.shadowColor = `rgba(${L},1)`;
-            ctx.shadowBlur = 24;
-            ctx.fillStyle = g;
-            ctx.fillRect(0, hz - 1, w, 2);
-            ctx.restore();
-
-            // pilar de luz
-            g = ctx.createLinearGradient(vx - 120, 0, vx + 120, 0);
-            g.addColorStop(0, `rgba(${L},0)`);
-            g.addColorStop(0.5, `rgba(${L},${0.06 * intensity})`);
-            g.addColorStop(1, `rgba(${L},0)`);
-            ctx.fillStyle = g;
-            ctx.fillRect(vx - 120, 0, 240, hz);
+            ctx.globalAlpha = 1;
         }
 
         size();
@@ -283,11 +269,16 @@
         if ('IntersectionObserver' in window) {
             new IntersectionObserver(es => es.forEach(e => visible = e.isIntersecting)).observe(c);
         }
-        hero.addEventListener('mousemove', e => {
-            const r = hero.getBoundingClientRect();
-            hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-            hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
-        });
+        const spot = $('.hero-spot');
+        if (spot && finePointer) {
+            gsap.set(spot, { x: innerWidth * 0.7, y: innerHeight * 0.35 });
+            const sx = gsap.quickTo(spot, 'x', { duration: 0.8, ease: 'power3' });
+            const sy = gsap.quickTo(spot, 'y', { duration: 0.8, ease: 'power3' });
+            hero.addEventListener('mousemove', e => {
+                const r = hero.getBoundingClientRect();
+                sx(e.clientX - r.left); sy(e.clientY - r.top);
+            });
+        }
         return {
             start() {
                 if (running) return;
@@ -309,6 +300,7 @@
     gsap.set(['.hero-kicker', '.hero-side > *', '.hero-foot > *'], { y: 30, opacity: 0 });
     gsap.set('.hdr', { yPercent: -120 });
     gsap.set('.hud, .progress', { opacity: 0 });
+    gsap.set('.wa', { scale: 0, opacity: 0 });
 
     function heroIn(fast) {
         heroCanvas.start();
@@ -320,6 +312,7 @@
           .to('.hero-side > *', { y: 0, opacity: 1, duration: 1.2, stagger: 0.1 }, fast ? 0.3 : 0.6)
           .to('.hero-foot > *', { y: 0, opacity: 1, duration: 1.2, stagger: 0.08 }, fast ? 0.4 : 0.8)
           .to('.hud, .progress', { opacity: 1, duration: 1 }, 1)
+          .to('.wa', { scale: 1, opacity: 1, duration: 1, ease: 'back.out(2.2)' }, 1.2)
           .add(() => $$('.hero-title .line').forEach(l => l.classList.add('is-open')));
         return tl;
     }
@@ -431,7 +424,7 @@
         gsap.set('.portal-copy .pl > span', { yPercent: 110 });
         const tl = gsap.timeline({
             defaults: { ease: 'none' },
-            scrollTrigger: { trigger: portal, start: 'top top', end: '+=220%', pin: true, scrub: 1 }
+            scrollTrigger: { trigger: portal, start: 'top top', end: '+=220%', pin: true, scrub: 0.6 }
         });
         tl.fromTo('.portal-img', { scale: 1.6, xPercent: -6 }, { scale: 1.12, xPercent: 0, duration: 1.3 }, 0)
           .to('.portal-pre--top', { yPercent: -160, opacity: 0, duration: 0.6, ease: 'power2.in' }, 0.35)
@@ -469,8 +462,10 @@
         const rows = $$('.mq-row');
         if (!rows.length) return;
         const state = rows.map((row, i) => ({ row, x: 0, dir: i % 2 ? 1 : -1, skew: gsap.quickTo(row, 'skewX', { duration: 0.5, ease: 'power3' }) }));
-        let sign = 1;
+        let sign = 1, mqIn = false;
+        ScrollTrigger.create({ trigger: '.marquee', start: 'top bottom', end: 'bottom top', onToggle: st => { mqIn = st.isActive; } });
         gsap.ticker.add(() => {
+            if (!mqIn) return;
             if (Math.abs(velocity) > 20) sign = velocity > 0 ? 1 : -1;
             const boost = Math.min(Math.abs(velocity) * 0.006, 22);
             velocity *= 0.92;
@@ -513,8 +508,12 @@
             render();
         }
         const par = { x: 0, y: 0 };
+        let inView = false, moveTimer = null;
         function render() {
             if (!S0) return;
+            stage.classList.add('is-moving');
+            clearTimeout(moveTimer);
+            moveTimer = setTimeout(() => stage.classList.remove('is-moving'), 220);
             const k = cam.k;
             const s = S0 * Math.pow(S1 / S0, k);
             const ax = A0.x + (A1.x - A0.x) * k + par.x;
@@ -523,9 +522,12 @@
         }
         if (finePointer) {
             gsap.ticker.add(() => {
-                par.x += (-mouse.nx * 26 - par.x) * 0.05;
-                par.y += (-mouse.ny * 16 - par.y) * 0.05;
-                if (Math.abs(par.x) > 0.01) render();
+                if (!inView) return;
+                const tx = -mouse.nx * 26, ty = -mouse.ny * 16;
+                if (Math.abs(tx - par.x) < 0.08 && Math.abs(ty - par.y) < 0.08) return;
+                par.x += (tx - par.x) * 0.05;
+                par.y += (ty - par.y) * 0.05;
+                render();
             });
         }
         layout();
@@ -542,7 +544,7 @@
             tl.to(sel(i, '.niche-fixture'), { opacity: 1, duration: 0.05 }, at)
               .to(sel(i, '.niche-cone'), { keyframes: { opacity: [0, 0.85, 0.1, 0.6, 0.05, 1] }, duration: 0.45 }, at)
               .to(sel(i, '.niche-pool'), { opacity: 0.85, duration: 0.3 }, at + 0.2)
-              .to(sel(i, '.niche-screen'), { filter: 'brightness(1) saturate(1)', duration: 0.4 }, at + 0.15)
+              .to(sel(i, '.ns-dim'), { opacity: 0, duration: 0.4 }, at + 0.15)
               .to(reflects[i], { opacity: 0.3, duration: 0.4 }, at + 0.2);
         });
         tl.to('.show-head', { opacity: 0, y: -60, duration: 0.5, ease: 'power2.in' }, START - 0.35)
@@ -579,9 +581,10 @@
             start: 'top top',
             end: () => '+=' + Math.round(tl.duration() * innerHeight * 0.55),
             pin: true,
-            scrub: 1,
+            scrub: 0.6,
             animation: tl,
             invalidateOnRefresh: true,
+            onToggle: self => { inView = self.isActive; },
             onUpdate: self => {
                 gsap.set('.work-progress i', { scaleX: self.progress });
                 const t = tl.time();
@@ -637,6 +640,7 @@
         xPercent: i => (i % 2 ? 12 : -12), ease: 'none',
         scrollTrigger: { trigger: '.cta-big', start: 'top bottom', end: 'bottom 50%', scrub: true }
     });
+    ScrollTrigger.create({ trigger: '.form-wrap', start: 'top bottom', end: 'bottom top', toggleClass: 'in-view' });
     gsap.from(['.contact-info', '.form-wrap'], {
         y: 80, opacity: 0, stagger: 0.15, duration: 1.3, ease: 'expo.out',
         scrollTrigger: { trigger: '.contact-grid', start: 'top 80%' }

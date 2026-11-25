@@ -15,6 +15,11 @@ WEB3FORMS_KEY = "f16d4ad2-8461-44f4-a084-201d0837311f"
 # Endereço público do site (usado no formulário quando o JavaScript está desligado)
 SITE_URL = "https://nexusdesign.online/"
 
+# WhatsApp: número com indicativo (351 = Portugal) e mensagem que já aparece escrita
+WHATSAPP_NUMERO = "351932650524"
+WHATSAPP_VISIVEL = "932 650 524"
+WHATSAPP_MENSAGEM = "Olá! Vim do site da Nexus Design e gostava de falar sobre um projeto."
+
 # Resend: só usado quando o site corre com Python (python app.py).
 # A chave vem da variável de ambiente RESEND_API_KEY — nunca escrita no código.
 resend.api_key = os.environ.get("RESEND_API_KEY")
@@ -101,6 +106,9 @@ def render_home(mensagem_sucesso=None, static_build=False):
         static_build=static_build,
         web3forms_key=WEB3FORMS_KEY,
         site_url=SITE_URL,
+        whatsapp_numero=WHATSAPP_NUMERO,
+        whatsapp_visivel=WHATSAPP_VISIVEL,
+        whatsapp_mensagem=WHATSAPP_MENSAGEM,
     )
 
 
