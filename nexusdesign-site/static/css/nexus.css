@@ -27,7 +27,9 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
+/* nada pode ficar mais largo do que o ecrã (evita o "zoom out" esquisito no telemóvel) */
+main > section, .footer { overflow-x: clip; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
@@ -903,7 +905,8 @@ html:not(.cinema) .portal-img { transform: none; }
     border-top: 1px solid var(--line);
 }
 .process-head { position: sticky; top: 120px; align-self: start; }
-.process .sec-title { font-size: clamp(38px, 4.4vw, 80px); }
+.process .sec-title { font-size: clamp(30px, 4.4vw, 80px); }
+@media (max-width: 899px) { .process .sec-title { font-size: min(8.4vw, 64px); } }
 .process-note { margin-top: 28px; color: var(--muted); max-width: 34ch; }
 .steps { position: relative; padding-left: 64px; }
 .beam { position: absolute; left: 14px; top: 10px; bottom: 10px; width: 2px; background: var(--line); }
@@ -932,7 +935,7 @@ html:not(.cinema) .portal-img { transform: none; }
 .step h3 { margin: 12px 0 12px; font-size: clamp(30px, 3.6vw, 58px); font-weight: 900; font-variation-settings: "wdth" 115; line-height: .95; text-transform: uppercase; letter-spacing: -.02em; }
 .step p { color: var(--muted); font-size: 16px; max-width: 42ch; }
 @media (max-width: 899px) {
-    .process { grid-template-columns: 1fr; }
+    .process { grid-template-columns: minmax(0, 1fr); }
     .process-head { position: static; }
     .steps { padding-left: 46px; }
     .beam { left: 6px; }
