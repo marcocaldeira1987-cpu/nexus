@@ -73,8 +73,8 @@ def home():
                          'Tipografia clássica, tons bordeaux e uma mensagem clara: perceber os impostos não tem de ser complicado.',
             'tags': ['Web Design', 'Identidade', 'Sessões online'],
             'imagem': 'img/projects/ines-rosa.webp',
-            'url': '',
-            'dominio': '',  # preencher quando houver domínio
+            'url': 'https://inesrosacontabilista.pt/',
+            'dominio': 'inesrosacontabilista.pt',
             'cor': '#e7a49c',
             'novo': True,
         },
@@ -101,8 +101,8 @@ def home():
                          'A paisagem, a neve e o convite a abrandar dão o tom a toda a experiência.',
             'tags': ['Web Design', 'Vídeo', 'Alojamento'],
             'imagem': 'img/projects/casa-da-serra.webp',
-            'url': '',
-            'dominio': '',  # preencher quando houver domínio
+            'url': 'https://casadaserra.online/',
+            'dominio': 'casadaserra.online',
             'cor': '#eadbb8',
             'novo': False,
         },
