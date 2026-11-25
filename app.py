@@ -46,18 +46,69 @@ def home():
     servicos = [
         {
             'titulo': 'Web Design & Performance',
-            'descricao': 'Websites ultra-rápidos, modernos e otimizados para converter visitantes em clientes.'
+            'descricao': 'Websites ultra-rápidos, modernos e otimizados para converter visitantes em clientes.',
+            'itens': ['Websites feitos à medida', 'Carregamento ultra-rápido', 'Perfeito no telemóvel', 'Foco em contactos e vendas'],
         },
         {
             'titulo': 'Identidade Visual & Rebranding',
-            'descricao': 'Logotipos marcantes e posicionamento de marca que transmite autoridade no mercado.'
+            'descricao': 'Logotipos marcantes e posicionamento de marca que transmite autoridade no mercado.',
+            'itens': ['Logotipo e sistema visual', 'Paleta e tipografia', 'Aplicações de marca', 'Guia de identidade'],
         },
         {
             'titulo': 'Transformação Digital de Empresas',
-            'descricao': 'Estratégias visuais completas para dar uma nova faceta poderosa ao seu negócio.'
-        }
+            'descricao': 'Estratégias visuais completas para dar uma nova faceta poderosa ao seu negócio.',
+            'itens': ['Estratégia digital', 'Presença online organizada', 'Conteúdos com intenção', 'Acompanhamento contínuo'],
+        },
     ]
-    return render_template('index.html', servicos=servicos, mensagem_sucesso=mensagem_sucesso)
+
+    # Portefólio: o primeiro da lista aparece primeiro no site.
+    # Para acrescentar um projeto, basta juntar um novo bloco e a imagem em static/img/projects/.
+    projetos = [
+        {
+            'nome': 'Inês Rosa',
+            'nome_a': 'Inês', 'nome_b': 'Rosa',  # parte em itálico editorial
+            'subtitulo': 'Contabilista Certificada',
+            'categoria': 'Web Design / Contabilidade',
+            'descricao': 'Uma presença digital elegante e próxima para uma contabilista certificada. '
+                         'Tipografia clássica, tons bordeaux e uma mensagem clara: perceber os impostos não tem de ser complicado.',
+            'tags': ['Web Design', 'Identidade', 'Sessões online'],
+            'imagem': 'img/projects/ines-rosa.webp',
+            'url': '',
+            'dominio': '',  # preencher quando houver domínio
+            'cor': '#e7a49c',
+            'novo': True,
+        },
+        {
+            'nome': 'PointFino',
+            'nome_a': 'Point', 'nome_b': 'Fino',  # parte em itálico editorial
+            'subtitulo': 'Barbershop · Covilhã',
+            'categoria': 'Web Design / Barbearia',
+            'descricao': 'Uma presença escura, precisa e com carácter, tal como os cortes. '
+                         'Marcação direta, equipa e localização a um toque de distância.',
+            'tags': ['Web Design', 'Marcações', 'Mobile first'],
+            'imagem': 'img/projects/pointfino.webp',
+            'url': 'https://pointfino.pt',
+            'dominio': 'pointfino.pt',
+            'cor': '#3fe0b8',
+            'novo': False,
+        },
+        {
+            'nome': 'Casa da Serra',
+            'nome_a': 'Casa da', 'nome_b': 'Serra',  # parte em itálico editorial
+            'subtitulo': 'Penhas da Saúde · Serra da Estrela',
+            'categoria': 'Web Design / Turismo',
+            'descricao': 'Uma casa na serra contada em vídeo de ecrã inteiro. '
+                         'A paisagem, a neve e o convite a abrandar dão o tom a toda a experiência.',
+            'tags': ['Web Design', 'Vídeo', 'Alojamento'],
+            'imagem': 'img/projects/casa-da-serra.webp',
+            'url': '',
+            'dominio': '',  # preencher quando houver domínio
+            'cor': '#eadbb8',
+            'novo': False,
+        },
+    ]
+
+    return render_template('index.html', servicos=servicos, projetos=projetos, mensagem_sucesso=mensagem_sucesso)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

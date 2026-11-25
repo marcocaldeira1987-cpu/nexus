@@ -2,454 +2,385 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Design | Web Design & Branding de Elevado Impacto</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tipografia -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Biblioteca de Animações On Scroll (AOS) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glow-effect {
-            box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.25);
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-        }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nexus Design | A sua marca. Outra dimensão.</title>
+    <meta name="description" content="Nexus Design — estúdio digital. Criamos marcas e websites com personalidade, clareza e impacto visual para negócios que recusam passar despercebidos.">
+    <meta name="theme-color" content="#06080a">
+    <meta property="og:title" content="Nexus Design | A sua marca. Outra dimensão.">
+    <meta property="og:description" content="Marcas e websites com personalidade, clareza e impacto visual.">
+    <meta property="og:image" content="{{ url_for('static', filename='img/brand/nexus-studio.webp') }}">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23d8ff3c'/%3E%3Cpath d='M9 24V8l14 16V8' fill='none' stroke='%2306080a' stroke-width='3.4' stroke-linejoin='miter'/%3E%3C/svg%3E">
 
-        /* Efeito Neon Realista */
-        .neon-text {
-            color: #fff;
-            text-shadow:
-                0 0 4px #fff,
-                0 0 11px #fff,
-                0 0 19px #fff,
-                0 0 40px #6366f1,
-                0 0 80px #6366f1,
-                0 0 90px #6366f1,
-                0 0 100px #6366f1,
-                0 0 150px #6366f1;
-            animation: neonGlow 2.5s infinite alternate, neonFlicker 4s infinite;
-        }
-
-        @keyframes neonGlow {
-            0% {
-                text-shadow:
-                    0 0 4px #fff,
-                    0 0 10px #fff,
-                    0 0 18px #fff,
-                    0 0 35px #4f46e5,
-                    0 0 70px #4f46e5,
-                    0 0 80px #4f46e5,
-                    0 0 90px #4f46e5;
-            }
-            50% {
-                text-shadow:
-                    0 0 4px #fff,
-                    0 0 12px #fff,
-                    0 0 22px #fff,
-                    0 0 45px #8b5cf6,
-                    0 0 85px #8b5cf6,
-                    0 0 95px #8b5cf6,
-                    0 0 110px #8b5cf6;
-            }
-            100% {
-                text-shadow:
-                    0 0 4px #fff,
-                    0 0 14px #fff,
-                    0 0 25px #fff,
-                    0 0 50px #ec4899,
-                    0 0 90px #ec4899,
-                    0 0 100px #ec4899,
-                    0 0 120px #ec4899;
-            }
-        }
-
-        @keyframes neonFlicker {
-            0%, 100% { opacity: 1; }
-            41.99% { opacity: 1; }
-            42% { opacity: 0.8; }
-            43% { opacity: 1; }
-            45.99% { opacity: 1; }
-            46% { opacity: 0.85; }
-            46.5% { opacity: 1; }
-            80% { opacity: 1; }
-            80.5% { opacity: 0.9; }
-            81% { opacity: 1; }
-        }
-
-        /* Animação de Entrada do Logótipo do Header */
-        @keyframes headerIntro {
-            0% {
-                transform: scale(1.6) translateY(10px);
-                opacity: 0;
-            }
-            60% {
-                transform: scale(1.1) translateY(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .logo-intro-animation {
-            animation: headerIntro 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Estilos do Pop-up Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: #0f172a;
-            border: 1px solid #334155;
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 700px;
-            color: #f8fafc;
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-            animation: modalFadeIn 0.3s ease;
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #94a3b8;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .modal-close:hover { color: #ffffff; }
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="{{ url_for('static', filename='img/brand/nexus-studio.webp') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nexus.css') }}">
+    <script>if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('cinema');</script>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+<body{% if mensagem_sucesso %} data-success="1"{% endif %}>
 
-    <!-- Luzes de Fundo (Glows Ambientes) -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/20 to-pink-500/10 blur-[120px] pointer-events-none -z-10 rounded-full"></div>
+    <!-- ============ PORTA DE ENTRADA / INTRO ============ -->
+    {% if not mensagem_sucesso %}
+    <div id="intro" class="intro" role="dialog" aria-label="A entrar no site Nexus Design">
+        <div class="intro-door intro-door--top"></div>
+        <div class="intro-door intro-door--bot"></div>
+        <div class="intro-grid" aria-hidden="true"></div>
+        <div class="intro-scan" aria-hidden="true"></div>
+        <div class="intro-beam" aria-hidden="true"></div>
 
-    <!-- Navegação -->
-    <nav class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center border-b border-slate-800/80 sticky top-0 bg-slate-950/80 backdrop-blur-md z-50">
-        <div class="text-2xl font-extrabold tracking-wider flex items-center gap-3 logo-intro-animation">
-            <span class="w-3 h-3 rounded-full bg-indigo-500 animate-pulse shadow-[0_0_12px_#6366f1]"></span>
-            <span class="neon-text tracking-widest font-black">NEXUS</span>
-            <span class="text-white text-xl font-light">DESIGN</span>
-        </div>
-        <a href="#contacto" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all shadow-lg shadow-indigo-500/25">
-            Falar Connosco
-        </a>
-    </nav>
+        <div class="intro-content">
+            <div class="intro-hud intro-hud--tl">NEXUS DESIGN — DIGITAL STUDIO</div>
+            <div class="intro-hud intro-hud--tr"><span class="intro-blink"></span> SYS.BOOT</div>
 
-    <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-6 pt-20 pb-24 text-center relative">
-        <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-            <span class="inline-flex items-center gap-2 py-1.5 px-4 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-300 text-xs font-bold uppercase tracking-widest mb-8">
-                <span class="w-2 h-2 rounded-full bg-indigo-400"></span> Design Prático & Soluções Reais
-            </span>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-8">
-                Elevamos a sua marca ao nível que os seus clientes <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">respeitam e compram.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                Desenvolvemos ecossistemas digitais de alta performance e identidades visuais marcantes para empresas que recusam passar despercebidas.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
-                <a href="#contacto" class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-indigo-500/30 transition-all text-lg">
-                    Quero Dar o Salto
-                </a>
-                <a href="#servicos" class="bg-slate-900/90 border border-slate-700 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl transition-all text-lg">
-                    Ver Como Trabalhamos
-                </a>
-            </div>
-        </div>
-
-        <!-- Imagem Principal de Hero (Inovadora, limpa e convidativa) -->
-        <div class="relative max-w-5xl mx-auto mt-6 rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl glow-effect" data-aos="zoom-in-up" data-aos-duration="1200">
-            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80" alt="Design e Inovação Digital Nexus Design" class="w-full h-[380px] md:h-[500px] object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-            <div class="absolute bottom-6 left-6 right-6 flex flex-wrap justify-around bg-slate-950/80 backdrop-blur-md p-4 rounded-xl border border-slate-800 text-left">
-                <div class="p-2"><span class="block text-indigo-400 font-bold text-xl">100%</span><span class="text-xs text-slate-400">Design Personalizado</span></div>
-                <div class="p-2"><span class="block text-purple-400 font-bold text-xl">Ultra-Rápido</span><span class="text-xs text-slate-400">Otimização de Velocidade</span></div>
-                <div class="p-2"><span class="block text-pink-400 font-bold text-xl">Alta Conversão</span><span class="text-xs text-slate-400">Foco em Resultados</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quem Somos / Visão e Alma da Nexus -->
-    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-800/60 relative">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-6 relative" data-aos="zoom-in-right" data-aos-duration="1000">
-                <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" alt="Equipa Nexus Design" class="w-full h-[400px] object-cover">
+            <div class="intro-center">
+                <svg class="intro-logo" viewBox="0 0 160 160" aria-hidden="true">
+                    <circle class="il-ring" cx="80" cy="80" r="76" fill="none" stroke="rgba(216,255,60,.45)" stroke-width="1" stroke-dasharray="2 7"/>
+                    <circle class="il-ring2" cx="80" cy="80" r="68" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="40 12 4 12"/>
+                    <rect class="il-frame" x="26" y="26" width="108" height="108" rx="8" fill="#d8ff3c" fill-opacity="0" stroke="#d8ff3c" stroke-width="2"/>
+                    <path class="il-n" d="M54 110 V50 L106 110 V50" fill="none" stroke="#d8ff3c" stroke-width="11" stroke-linejoin="miter" stroke-linecap="butt"/>
+                </svg>
+                <div class="intro-word">
+                    <div class="intro-nexus" data-text="NEXUS">NEXUS</div>
+                    <div class="intro-design">DESIGN</div>
                 </div>
-            </div>
-            <div class="lg:col-span-6 space-y-6" data-aos="fade-left" data-aos-duration="1000">
-                <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block">A Nossa Filosofia</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold leading-tight">
-                    O mundo acelerou. A sua marca <span class="bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">não pode ficar para trás.</span>
-                </h2>
-                <div class="w-20 h-1.5 bg-gradient-to-r from-indigo-500 to-pink-500 rounded-full"></div>
-                <p class="text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                    Na <strong class="text-white font-semibold">Nexus Design</strong>, falamos a sua língua. Sem termos complicados ou burocracias desnecessárias: criamos soluções digitais diretas ao assunto e focadas em atrair clientes.
-                </p>
-                <p class="text-slate-300 text-base md:text-lg leading-relaxed font-light">
-                    Injetamos alma e clareza na sua imagem corporativa, ajudando o seu negócio a destacar-se de forma simples, moderna e sem complicações.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cartões de Serviços (Com Pop-ups Dinâmicos) -->
-    <section id="servicos" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-800/60">
-        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-2">O Que Fazemos</span>
-            <h2 class="text-3xl md:text-4xl font-bold">Soluções Práticas para o seu Negócio</h2>
-            <p class="text-slate-400 mt-3">Clique em cada cartão para ver exemplos reais e diretos ao ponto.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Caixa 1: Web Design -->
-            <div onclick="abrirModal('web')" class="glass-card border border-slate-800 hover:border-indigo-500/50 p-8 rounded-2xl transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/10 group cursor-pointer" data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="0">
-                <div class="w-14 h-14 bg-indigo-600/20 border border-indigo-500/30 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Web Design & Performance</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">Websites ultra-rápidos, modernos e otimizados para converter visitantes em clientes.</p>
-                <span class="inline-block mt-4 text-xs font-bold text-indigo-400 tracking-wider uppercase">Ver Exemplo &rarr;</span>
-            </div>
-
-            <!-- Caixa 2: Identidade Visual -->
-            <div onclick="abrirModal('brand')" class="glass-card border border-slate-800 hover:border-indigo-500/50 p-8 rounded-2xl transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/10 group cursor-pointer" data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="150">
-                <div class="w-14 h-14 bg-indigo-600/20 border border-indigo-500/30 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Identidade Visual & Rebranding</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">Logotipos marcantes e posicionamento de marca que transmite autoridade no mercado.</p>
-                <span class="inline-block mt-4 text-xs font-bold text-indigo-400 tracking-wider uppercase">Ver Portfólio &rarr;</span>
-            </div>
-
-            <!-- Caixa 3: Transformação Digital -->
-            <div onclick="abrirModal('digital')" class="glass-card border border-slate-800 hover:border-indigo-500/50 p-8 rounded-2xl transition-all hover:-translate-y-2 hover:shadow-xl hover:shadow-indigo-500/10 group cursor-pointer" data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="300">
-                <div class="w-14 h-14 bg-indigo-600/20 border border-indigo-500/30 rounded-xl flex items-center justify-center text-indigo-400 mb-6 group-hover:scale-110 transition-transform">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Transformação Digital de Empresas</h3>
-                <p class="text-slate-400 text-sm leading-relaxed font-light">Estratégias visuais completas para dar uma nova faceta poderosa ao seu negócio.</p>
-                <span class="inline-block mt-4 text-xs font-bold text-indigo-400 tracking-wider uppercase">Ver Análise &rarr;</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projeto em Destaque: PointFino.pt -->
-    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-800/60">
-        <div class="glass-card border border-indigo-500/30 rounded-3xl p-8 md:p-12 relative overflow-hidden glow-effect" data-aos="zoom-in-up" data-aos-duration="1000">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-7 space-y-4">
-                    <span class="inline-flex items-center gap-2 py-1 px-3 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-indigo-300 text-xs font-bold uppercase tracking-widest">
-                        <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span> Exemplo Real
-                    </span>
-                    <h3 class="text-3xl font-extrabold text-white">PointFino.pt — Feito para Funcionar</h3>
-                    <p class="text-slate-300 text-sm md:text-base font-light leading-relaxed">
-                        Um site robusto, rápido e direto ao assunto, construído de raiz para facilitar a comunicação com clientes e potenciar vendas sem complicações técnicas.
-                    </p>
-                    <div class="pt-2">
-                        <a href="https://pointfino.pt" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold px-6 py-3.5 rounded-xl transition-all text-sm shadow-lg shadow-indigo-500/25">
-                            <span>Ver Site a Funcionar (pointfino.pt)</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="lg:col-span-5 rounded-xl overflow-hidden border border-slate-700/80 shadow-2xl relative group">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="PointFino Preview" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute inset-0 bg-indigo-950/20 pointer-events-none"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- O Nosso Processo de Trabalho -->
-    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-800/60">
-        <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-            <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-2">Simples e Transparente</span>
-            <h2 class="text-3xl md:text-4xl font-bold">Como É Trabalhar Connosco</h2>
-            <p class="text-slate-400 mt-3">Passos simples, sem letras miúdas nem processos longos.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="glass-card border border-slate-800 p-6 rounded-2xl relative group hover:border-indigo-500/50 transition-all" data-aos="zoom-in-up" data-aos-delay="100">
-                <span class="text-5xl font-extrabold text-indigo-500/10 absolute top-4 right-6 group-hover:text-indigo-500/30 transition-colors">01</span>
-                <h3 class="text-lg font-bold mb-2 text-indigo-400">Conversa Inicial</h3>
-                <p class="text-slate-400 text-sm font-light leading-relaxed">Ouve-mos o que precisa e percebemos exatamente o objetivo do seu negócio.</p>
-            </div>
-
-            <div class="glass-card border border-slate-800 p-6 rounded-2xl relative group hover:border-indigo-500/50 transition-all" data-aos="zoom-in-up" data-aos-delay="200">
-                <span class="text-5xl font-extrabold text-indigo-500/10 absolute top-4 right-6 group-hover:text-indigo-500/30 transition-colors">02</span>
-                <h3 class="text-lg font-bold mb-2 text-indigo-400">Ideia & Visual</h3>
-                <p class="text-slate-400 text-sm font-light leading-relaxed">Desenhamos uma estrutura moderna, limpa e apelativa para os seus clientes.</p>
-            </div>
-
-            <div class="glass-card border border-slate-800 p-6 rounded-2xl relative group hover:border-indigo-500/50 transition-all" data-aos="zoom-in-up" data-aos-delay="300">
-                <span class="text-5xl font-extrabold text-indigo-500/10 absolute top-4 right-6 group-hover:text-indigo-500/30 transition-colors">03</span>
-                <h3 class="text-lg font-bold mb-2 text-indigo-400">Construção</h3>
-                <p class="text-slate-400 text-sm font-light leading-relaxed">Colocamos mãos à obra com tecnologia rápida, segura e adaptada a telemóveis.</p>
-            </div>
-
-            <div class="glass-card border border-slate-800 p-6 rounded-2xl relative group hover:border-indigo-500/50 transition-all" data-aos="zoom-in-up" data-aos-delay="400">
-                <span class="text-5xl font-extrabold text-indigo-500/10 absolute top-4 right-6 group-hover:text-indigo-500/30 transition-colors">04</span>
-                <h3 class="text-lg font-bold mb-2 text-indigo-400">Lançamento</h3>
-                <p class="text-slate-400 text-sm font-light leading-relaxed">O site fica online a brilhar e pronto a receber contactos e novos clientes.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formulário de Contacto / Conversa -->
-    <section id="contacto" class="max-w-4xl mx-auto px-6 py-20 border-t border-slate-800/60" data-aos="zoom-in-up" data-aos-duration="1000">
-        <div class="glass-card border border-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden glow-effect">
-            <div class="text-center mb-10">
-                <span class="text-indigo-400 font-bold text-xs uppercase tracking-widest block mb-2">Fale Connosco</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold">Vamos dar vida ao seu projeto?</h2>
-                <p class="text-slate-400 mt-3 text-sm md:text-base font-light">Deixe-nos uma mensagem rápida. Sem compromisso, sem conversas complicadas — apenas uma ajuda direta para o que precisa.</p>
-            </div>
-
-            {% if mensagem_sucesso %}
-            <div class="mb-8 p-4 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-center font-semibold text-sm shadow-lg">
-                {{ mensagem_sucesso }}
-            </div>
-            {% endif %}
-
-            <form action="/" method="POST" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">O seu Nome *</label>
-                        <input type="text" name="nome" required placeholder="Ex: Marco Silva" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Nome da Empresa</label>
-                        <input type="text" name="empresa" placeholder="Ex: Minha Empresa" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">O seu E-mail *</label>
-                    <input type="email" name="email" required placeholder="Ex: contacto@empresa.com" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">Em que podemos ajudar? *</label>
-                    <textarea name="mensagem" rows="4" required placeholder="Conte-nos brevemente o que pretende (ex: quero um site novo, melhorar a imagem da marca...)" class="w-full bg-slate-950/90 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"></textarea>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold py-4 rounded-xl shadow-xl shadow-indigo-500/30 transition-all text-lg">
-                    Enviar Mensagem
+                <button class="intro-enter" type="button" aria-label="Entrar no site">
+                    <span>Entrar na nova dimensão</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
                 </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Modal Geral para os Serviços -->
-    <div id="serviceModal" class="modal-overlay" onclick="fecharModalFora(event)">
-        <div class="modal-content">
-            <button class="modal-close" onclick="fecharModal()">&times;</button>
-            <div id="modalBody">
-                <!-- Conteúdo dinâmico injetado via JavaScript -->
+                <div class="intro-hint">Clique ou prima <kbd>Enter</kbd></div>
             </div>
+
+            <ul class="intro-log" aria-hidden="true">
+                <li>&gt; A iniciar Nexus OS</li>
+                <li>&gt; A carregar identidade visual ........ <b>OK</b></li>
+                <li>&gt; A compilar projetos [{{ '%02d' % projetos|length }}] ........ <b>OK</b></li>
+                <li>&gt; A calibrar luz e movimento ........ <b>OK</b></li>
+                <li>&gt; Acesso autorizado.</li>
+            </ul>
+            <div class="intro-count" aria-hidden="true"><span class="intro-num">000</span><small>%</small></div>
+            <div class="intro-bar" aria-hidden="true"><i></i></div>
         </div>
     </div>
+    {% endif %}
 
-    <footer class="border-t border-slate-900 py-12 text-center text-slate-500 text-sm">
-        <p>&copy; 2026 Nexus Design. Todos os direitos reservados. | nexusdesign.com</p>
+    <!-- ============ CURSOR / HUD ============ -->
+    <div class="cursor" aria-hidden="true"><div class="cur-ring"><span class="cur-label"></span></div><div class="cur-dot"></div></div>
+    <div class="progress" aria-hidden="true"><i></i></div>
+    <div class="hud hud--l" aria-hidden="true"><span class="hud-dot"></span><span class="hud-sec">// 00 — INÍCIO</span></div>
+    <div class="hud hud--r" aria-hidden="true">SCROLL <span class="hud-pct">000</span>%</div>
+
+    <!-- ============ HEADER ============ -->
+    <header class="hdr">
+        <a href="#topo" class="logo" aria-label="Nexus Design — início">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#d8ff3c"/><path d="M9.5 24V8l13 16V8" fill="none" stroke="#06080a" stroke-width="3.4"/></svg>
+            <span class="logo-text"><b>NEXUS</b><small>DESIGN</small></span>
+        </a>
+        <nav class="nav" aria-label="Principal">
+            <a href="#projetos">Projetos</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#processo">Processo</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <a href="#contacto" class="btn btn--sm hdr-cta" data-magnetic><span>Vamos ao seu projeto</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+    </header>
+
+    <div class="mnav" aria-hidden="true">
+        <nav>
+            <a href="#projetos"><small>01</small>Projetos</a>
+            <a href="#servicos"><small>02</small>Serviços</a>
+            <a href="#processo"><small>03</small>Processo</a>
+            <a href="#contacto"><small>04</small>Contacto</a>
+        </nav>
+        <p class="label">Nexus Design — Digital Studio</p>
+    </div>
+
+    <main id="topo">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" data-hud="// 00 — INÍCIO">
+            <canvas class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-spot" aria-hidden="true"></div>
+            <div class="hero-vignette" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <p class="label hero-kicker"><span class="dot"></span><span data-scramble>NEXUS / DIGITAL STUDIO</span></p>
+                <h1 class="hero-title" aria-label="A sua marca. Outra dimensão.">
+                    <span class="line"><span class="split">A SUA MARCA.</span><svg class="hero-arrow" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32L32 8M14 8h18v18" fill="none" stroke="currentColor" stroke-width="3.2"/></svg></span>
+                    <span class="line"><span class="split">OUTRA</span></span>
+                    <span class="line"><span class="split lime">DIMENSÃO.</span></span>
+                </h1>
+
+                <div class="hero-side">
+                    <p class="hero-lead">O seu negócio tem muito para dar.<br>Vamos fazer com que isso se veja.</p>
+                    <p class="hero-sub">Criamos marcas e websites com personalidade, clareza e um caminho simples até ao próximo contacto.</p>
+                    <div class="hero-ctas">
+                        <a href="#contacto" class="btn" data-magnetic><span>Vamos ao seu projeto</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                        <a href="#projetos" class="link-arrow">Ver projetos <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-foot">
+                <div class="stat"><b>{{ '%02d' % projetos|length }}</b><span>Projetos online</span></div>
+                <div class="stat"><b>100%</b><span>Design à medida</span></div>
+                <div class="stat"><b>24h</b><span>Tempo de resposta</span></div>
+                <div class="scroll-cue"><span class="label">Scroll para explorar</span><i></i></div>
+            </div>
+        </section>
+
+        <!-- ============ PORTAL: voo através das letras ============ -->
+        <section class="portal" data-hud="// 01 — NOVA DIMENSÃO" aria-label="Nexus Design — nova dimensão">
+            <div class="portal-stage">
+                <img class="portal-img" src="{{ url_for('static', filename='img/brand/nexus-studio.webp') }}" alt="Identidade Nexus Design: cartões de visita, letra N em verde lima e escultura cromada" width="1316" height="423">
+                <div class="portal-mask" aria-hidden="true"><span class="pm-word">NE<span class="pm-x">X</span>US</span></div>
+                <div class="portal-shade" aria-hidden="true"></div>
+                <div class="portal-sweep" aria-hidden="true"></div>
+            </div>
+            <p class="portal-pre portal-pre--top" aria-hidden="true">Ideias que <em>se veem.</em></p>
+            <p class="portal-pre portal-pre--bot" aria-hidden="true">Experiências que <em>se sentem.</em></p>
+            <div class="portal-hud portal-hud--tl label">Nexus Design / Nova dimensão</div>
+            <div class="portal-hud portal-hud--tr label">Estratégia × Design × Digital</div>
+            <div class="portal-copy">
+                <p class="label portal-copy-k">Boa imagem. Boa experiência.</p>
+                <h2><span class="pl"><span>Uma só</span></span> <span class="pl"><span class="serif">direção.</span></span></h2>
+            </div>
+        </section>
+
+        <!-- ============ MANIFESTO ============ -->
+        <section class="manifesto" data-hud="// 02 — MANIFESTO">
+            <p class="label sec-label"><span class="dot"></span><span data-scramble>02 — Manifesto</span></p>
+            <p class="manifesto-text">
+                Isto não é só design. É a forma como o seu negócio é <strong>visto</strong>, <strong>sentido</strong> e <strong>lembrado</strong>. Criamos marcas e websites que fazem as pessoas parar o scroll, confiar à primeira vista e <strong>dar o próximo passo.</strong>
+            </p>
+        </section>
+
+        <!-- ============ MARQUEE ============ -->
+        <section class="marquee" aria-label="Áreas de trabalho">
+            {% set mq = ['Web Design', 'Branding', 'Estratégia', 'Digital', 'Performance', 'Identidade'] %}
+            <div class="mq-row">
+                {% for _ in range(2) %}{% for w in mq %}<span class="mq-item{% if loop.index is even %} o{% endif %}">{{ w }}</span><span class="mq-star" aria-hidden="true">✦</span>{% endfor %}{% endfor %}
+            </div>
+            <div class="mq-row mq-row--rev" aria-hidden="true">
+                {% for _ in range(2) %}{% for w in mq|reverse %}<span class="mq-item{% if loop.index is odd %} o{% endif %}">{{ w }}</span><span class="mq-star">✦</span>{% endfor %}{% endfor %}
+            </div>
+        </section>
+
+        <!-- ============ PROJETOS: showroom cinematográfico ============ -->
+        <section id="projetos" class="work" data-hud="// 03 — PROJETOS">
+
+            <!-- Versão cinematográfica (ativada por JavaScript) -->
+            <div class="show" aria-hidden="true">
+                <div class="show-viewport">
+                    <div class="show-stage">
+                        <div class="show-wall"></div>
+                        {% for p in projetos %}
+                        <div class="niche" style="--p: {{ p.cor }}; --i: {{ loop.index0 }}">
+                            <div class="niche-inner"></div>
+                            <div class="niche-fixture"></div>
+                            <div class="niche-cone"></div>
+                            <div class="niche-screen">
+                                <div class="ns-bar"><i></i><i></i><i></i><span>{{ p.dominio or p.nome }}</span></div>
+                                <img src="{{ url_for('static', filename=p.imagem) }}" alt="" width="1900" height="900">
+                                <div class="ns-glare"></div>
+                            </div>
+                            <div class="niche-plinth"><span>{{ '%02d' % loop.index }}</span></div>
+                            <div class="niche-pool"></div>
+                            <div class="niche-dark"></div>
+                        </div>
+                        <div class="reflect" style="--i: {{ loop.index0 }}"><img src="{{ url_for('static', filename=p.imagem) }}" alt=""></div>
+                        {% endfor %}
+                        <div class="show-floor"></div>
+                    </div>
+                </div>
+                <div class="show-vignette"></div>
+                <div class="show-shade"></div>
+
+                <div class="show-head">
+                    <p class="label sec-label"><span class="dot"></span><span data-scramble>03 — A coleção</span></p>
+                    <h2 class="show-title">Projetos que já<br>vivem <span class="serif lime">online.</span><sup>({{ '%02d' % projetos|length }})</sup></h2>
+                </div>
+
+                {% for p in projetos %}
+                <div class="show-info" style="--p: {{ p.cor }}">
+                    <p class="label si-index"><span>{{ '%02d' % loop.index }}</span> / {{ '%02d' % projetos|length }} — {{ p.categoria }}{% if p.novo %}<em class="badge-new">Novo</em>{% endif %}</p>
+                    <h3 class="si-name">{{ p.nome_a }} <span class="serif">{{ p.nome_b }}</span></h3>
+                    <p class="si-sub">{{ p.subtitulo }}</p>
+                    <p class="si-desc">{{ p.descricao }}</p>
+                    <ul class="proj-tags">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+                    {% if p.url %}
+                    <a class="proj-link" href="{{ p.url }}" target="_blank" rel="noopener" tabindex="-1"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                    {% else %}
+                    <button class="proj-link" type="button" tabindex="-1" data-zoom="{{ url_for('static', filename=p.imagem) }}" data-alt="{{ p.nome }}"><span>Ver o projeto</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div class="show-end">
+                    <p class="label"><span class="dot"></span>Próximo capítulo</p>
+                    <h3>O próximo projeto<br>pode ser o <span class="serif lime">seu.</span></h3>
+                    <a href="#contacto" class="btn" data-magnetic tabindex="-1"><span>Começar agora</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                </div>
+
+                <div class="show-dots">{% for p in projetos %}<i style="--p: {{ p.cor }}"></i>{% endfor %}</div>
+                <div class="work-progress"><i></i></div>
+            </div>
+
+            <!-- Versão acessível / sem animação: lista simples -->
+            <div class="work-list">
+                <div class="work-intro">
+                    <p class="label sec-label"><span class="dot"></span>03 — A coleção</p>
+                    <h2 class="show-title">Projetos que já<br>vivem <span class="serif lime">online.</span></h2>
+                </div>
+                {% for p in projetos %}
+                <article class="proj" style="--p: {{ p.cor }}">
+                    <div class="proj-media">
+                        <div class="browser" data-cursor="Ampliar" data-zoom="{{ url_for('static', filename=p.imagem) }}" data-alt="{{ p.nome }}" role="button" tabindex="0" aria-label="Ampliar imagem do projeto {{ p.nome }}">
+                            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">{{ p.dominio or p.nome }}</span></div>
+                            <div class="browser-view"><img src="{{ url_for('static', filename=p.imagem) }}" alt="Página inicial do website {{ p.nome }}" loading="lazy" width="1900" height="900"></div>
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <p class="label si-index"><span>{{ '%02d' % loop.index }}</span> / {{ '%02d' % projetos|length }} — {{ p.categoria }}{% if p.novo %}<em class="badge-new">Novo</em>{% endif %}</p>
+                        <h3 class="si-name">{{ p.nome_a }} <span class="serif">{{ p.nome_b }}</span></h3>
+                        <p class="si-sub">{{ p.subtitulo }}</p>
+                        <p class="si-desc">{{ p.descricao }}</p>
+                        <ul class="proj-tags">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+                        {% if p.url %}
+                        <a class="proj-link" href="{{ p.url }}" target="_blank" rel="noopener"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ============ SERVIÇOS ============ -->
+        <section id="servicos" class="services" data-hud="// 04 — SERVIÇOS">
+            <div class="sec-head">
+                <p class="label sec-label"><span class="dot"></span><span data-scramble>04 — O que fazemos</span></p>
+                <h2 class="sec-title" data-reveal>Soluções práticas.<br><span class="dim">Impacto real.</span></h2>
+            </div>
+            <div class="svc-grid">
+                {% for s in servicos %}
+                <article class="svc">
+                    <div class="svc-top">
+                        <span class="label">S/{{ '%02d' % loop.index }}</span>
+                        <span class="svc-icon" aria-hidden="true">
+                            {% if loop.index == 1 %}<svg viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="18" rx="2"/><path d="M3 11h26M11 28h10M16 24v4"/></svg>
+                            {% elif loop.index == 2 %}<svg viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M11 22V10l10 12V10"/></svg>
+                            {% else %}<svg viewBox="0 0 32 32"><path d="M4 26l8-9 6 5 10-13"/><path d="M21 9h7v7"/></svg>{% endif %}
+                        </span>
+                    </div>
+                    <h3>{{ s.titulo }}</h3>
+                    <p>{{ s.descricao }}</p>
+                    <ul>{% for i in s.itens %}<li>{{ i }}</li>{% endfor %}</ul>
+                    <a href="#contacto" class="svc-more">Falar sobre isto <span aria-hidden="true">↗</span></a>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- ============ PROCESSO ============ -->
+        <section id="processo" class="process" data-hud="// 05 — PROCESSO">
+            <div class="process-head">
+                <p class="label sec-label"><span class="dot"></span><span data-scramble>05 — Como trabalhamos</span></p>
+                <h2 class="sec-title" data-reveal>Simples.<br>Transparente.<br><span class="lime">Sem letras miúdas.</span></h2>
+                <p class="process-note" data-reveal>Quatro passos claros, do primeiro olá ao site online a brilhar.</p>
+            </div>
+            <ol class="steps">
+                <li class="beam" aria-hidden="true"><i class="beam-fill"></i></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">01</span><h3>Conversa inicial</h3><p>Ouvimos o que precisa e percebemos exatamente o objetivo do seu negócio.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">02</span><h3>Ideia &amp; visual</h3><p>Desenhamos uma estrutura moderna, limpa e apelativa para os seus clientes.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">03</span><h3>Construção</h3><p>Mãos à obra com tecnologia rápida, segura e perfeita em telemóveis.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">04</span><h3>Lançamento</h3><p>O site fica online, pronto a receber contactos e novos clientes.</p></li>
+            </ol>
+        </section>
+
+        <!-- ============ CTA + CONTACTO ============ -->
+        <section id="contacto" class="contact" data-hud="// 06 — CONTACTO">
+            <h2 class="cta-big" aria-label="Vamos criar a sua próxima dimensão">
+                <span class="cta-line">Vamos criar</span>
+                <span class="cta-line">a sua próxima</span>
+                <span class="cta-line">dimensão.</span>
+            </h2>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="label sec-label"><span class="dot"></span><span data-scramble>06 — Fale connosco</span></p>
+                    <h3>Conte-nos a sua ideia.<br><span class="dim">Nós tratamos do resto.</span></h3>
+                    <ul class="contact-list">
+                        <li><b>24h</b><span>Resposta garantida</span></li>
+                        <li><b>0€</b><span>Primeira conversa, sem compromisso</span></li>
+                        <li><b>PT</b><span>Portugal · Presencial ou remoto</span></li>
+                    </ul>
+                </div>
+
+                <div class="form-wrap">
+                    <div class="form-glow" aria-hidden="true"></div>
+                    {% if mensagem_sucesso %}
+                    <div class="form-success" role="status">
+                        <span class="fs-icon" aria-hidden="true">✓</span>
+                        <p>{{ mensagem_sucesso }}</p>
+                    </div>
+                    {% endif %}
+                    <form action="/#contacto" method="POST" class="form">
+                        <div class="form-row">
+                            <label class="field">
+                                <input type="text" name="nome" required placeholder=" " autocomplete="name">
+                                <span>O seu nome *</span>
+                            </label>
+                            <label class="field">
+                                <input type="text" name="empresa" placeholder=" " autocomplete="organization">
+                                <span>Empresa</span>
+                            </label>
+                        </div>
+                        <label class="field">
+                            <input type="email" name="email" required placeholder=" " autocomplete="email">
+                            <span>O seu e-mail *</span>
+                        </label>
+                        <label class="field">
+                            <textarea name="mensagem" rows="4" required placeholder=" "></textarea>
+                            <span>Em que podemos ajudar? *</span>
+                        </label>
+                        <button type="submit" class="btn btn--full" data-magnetic><span>Enviar mensagem</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" data-hud="// 07 — FIM">
+        <div class="footer-top">
+            <p class="footer-tag">Boa imagem.<br>Boa experiência.<br><span class="lime">Uma só direção.</span></p>
+            <nav class="footer-nav" aria-label="Rodapé">
+                <a href="#projetos">Projetos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#processo">Processo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <a href="#topo" class="to-top" aria-label="Voltar ao topo">↑</a>
+        </div>
+        <div class="footer-mark" aria-hidden="true"><span>N</span><span>E</span><span>X</span><span>U</span><span>S</span></div>
+        <div class="footer-glow" aria-hidden="true"></div>
+        <div class="footer-bot label">
+            <span>&copy; 2026 Nexus Design. Todos os direitos reservados.</span>
+            <span>Estratégia × Design × Digital</span>
+        </div>
     </footer>
 
-    <!-- Script de Inicialização das Animações -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            once: true,
-            offset: 100,
-            easing: 'ease-out-cubic'
-        });
+    <!-- Lightbox -->
+    <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Imagem do projeto">
+        <button class="lb-close" type="button" aria-label="Fechar">×</button>
+        <img alt="">
+    </div>
 
-        // Funções para gerir os Pop-ups dos Serviços
-        function abrirModal(tipo) {
-            const modal = document.getElementById('serviceModal');
-            const body = document.getElementById('modalBody');
-            
-            if (tipo === 'web') {
-                body.innerHTML = `
-                    <h2 class="text-2xl font-bold text-indigo-400 mb-3">Web Design & Performance</h2>
-                    <p class="text-slate-300 text-sm mb-4">Exemplo de um ecossistema digital altamente fluido, com animações imersivas, tempos de carregamento inferiores a 0.8s e conversão otimizada.</p>
-                    <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 mb-4">
-                        <h4 class="text-white font-semibold mb-2">O que entregamos:</h4>
-                        <ul class="list-disc list-inside text-sm text-slate-400 space-y-1">
-                            <li>Velocidade máxima de carregamento</li>
-                            <li>Visual impecável em telemóveis e computadores</li>
-                            <li>Estrutura focada em atrair clientes sem complicações</li>
-                        </ul>
-                    </div>
-                    <div class="text-center">
-                        <a href="https://pointfino.pt" target="_blank" class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-5 py-2.5 rounded-lg text-sm transition-all shadow-md">Ver Exemplo Real (pointfino.pt) &rarr;</a>
-                    </div>
-                `;
-            } else if (tipo === 'brand') {
-                body.innerHTML = `
-                    <h2 class="text-2xl font-bold text-indigo-400 mb-3">Identidade Visual & Rebranding</h2>
-                    <p class="text-slate-300 text-sm mb-4">Portfólio de logotipos marcantes, paletas cromáticas exclusivas e banners visuais de alto impacto construídos para marcar posição.</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center text-slate-400 text-sm font-semibold flex items-center justify-center h-24">Logotipo Premium Exclusivo</div>
-                        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center text-slate-400 text-sm font-semibold flex items-center justify-center h-24">Banner de Autoridade Visual</div>
-                    </div>
-                `;
-            } else if (tipo === 'digital') {
-                body.innerHTML = `
-                    <h2 class="text-2xl font-bold text-indigo-400 mb-3">Transformação Digital de Empresas</h2>
-                    <p class="text-slate-300 text-sm mb-4">Análise detalhada do antes e depois de uma intervenção estrutural:</p>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 mb-3">
-                        <strong class="text-red-400 block mb-1">🔴 Cenário Atual (Antes):</strong>
-                        <p class="text-slate-400 text-xs leading-relaxed">Processos manuais lentos, falta de presença online organizada e perda de clientes por atrito no primeiro contacto.</p>
-                    </div>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800">
-                        <strong class="text-emerald-400 block mb-1">🟢 Após Intervenção Nexus:</strong>
-                        <p class="text-slate-400 text-xs leading-relaxed">Processos digitalizados, facilidade de contacto e imagem profissional consolidada no mercado.</p>
-                    </div>
-                `;
-            }
-            
-            modal.style.display = 'flex';
-        }
-
-        function fecharModal() {
-            document.getElementById('serviceModal').style.display = 'none';
-        }
-
-        function fecharModalFora(event) {
-            if (event.target.id === 'serviceModal') {
-                fecharModal();
-            }
-        }
-    </script>
+    <script src="{{ url_for('static', filename='vendor/gsap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/ScrollTrigger.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/lenis.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nexus.js') }}"></script>
 </body>
 </html>
