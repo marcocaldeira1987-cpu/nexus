@@ -326,7 +326,20 @@
                         <p>{{ mensagem_sucesso }}</p>
                     </div>
                     {% endif %}
+                    <div class="form-success" role="status" hidden>
+                        <span class="fs-icon" aria-hidden="true">✓</span>
+                        <p></p>
+                    </div>
+                    {% if static_build %}
+                    <form action="https://api.web3forms.com/submit" method="POST" class="form" data-web3forms>
+                        <input type="hidden" name="access_key" value="{{ web3forms_key }}">
+                        <input type="hidden" name="subject" value="🚀 Nova lead no site Nexus Design">
+                        <input type="hidden" name="from_name" value="Site Nexus Design">
+                        <input type="hidden" name="redirect" value="{{ site_url }}?enviado=1#contacto">
+                        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    {% else %}
                     <form action="/#contacto" method="POST" class="form">
+                    {% endif %}
                         <div class="form-row">
                             <label class="field">
                                 <input type="text" name="nome" required placeholder=" " autocomplete="name">

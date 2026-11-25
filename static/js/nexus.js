@@ -27,6 +27,7 @@
         $$('.manifesto-text').forEach(el => el.style.opacity = 1);
         $$('.step').forEach(el => el.classList.add('is-lit'));
         initLightbox(null);
+        initForm();
         initMenu(null);
         return;
     }
@@ -686,6 +687,7 @@
        ====================================================================== */
     initMenu(lenis);
     initLightbox(lenis);
+    initForm();
 
     $$('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
@@ -775,5 +777,56 @@
             if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); open(t.dataset.zoom, t.dataset.alt, t); }
         });
         lb.addEventListener('click', e => { if (e.target === lb || e.target.closest('.lb-close')) close(); });
+    }
+
+    function initForm() {
+        const form = document.querySelector('form[data-web3forms]');
+        if (!form) return;
+        const box = form.parentElement.querySelector('.form-success[hidden], .form-success.js-msg') || null;
+        const msg = (text, isError) => {
+            if (!box) return;
+            box.classList.add('js-msg');
+            box.hidden = false;
+            box.classList.toggle('is-error', !!isError);
+            box.querySelector('.fs-icon').textContent = isError ? '!' : '✓';
+            box.querySelector('p').textContent = text;
+        };
+        if (new URLSearchParams(location.search).get('enviado') === '1') {
+            msg('Obrigado! Recebemos o seu pedido e a equipa da Nexus Design entrará em contacto dentro de 24 horas.');
+        }
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            const data = Object.fromEntries(new FormData(form).entries());
+            const nome = (data.nome || '').trim();
+            const ok = 'Obrigado' + (nome ? ', ' + nome : '') + '! Recebemos o seu pedido e a equipa da Nexus Design entrará em contacto dentro de 24 horas.';
+            if (data.botcheck) { msg(ok); form.reset(); return; }
+            if (!data.access_key) {
+                msg('O formulário está temporariamente indisponível. Por favor tente mais tarde.', true);
+                return;
+            }
+            delete data.redirect;
+            delete data.botcheck;
+            data.name = nome;
+            const btn = form.querySelector('button[type="submit"]');
+            const label = btn.querySelector('span');
+            const old = label.textContent;
+            btn.disabled = true;
+            label.textContent = 'A enviar…';
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const json = await res.json().catch(() => ({}));
+                if (res.ok && json.success) { msg(ok); form.reset(); }
+                else msg('Não foi possível enviar a mensagem. Por favor tente novamente dentro de momentos.', true);
+            } catch (err) {
+                msg('Sem ligação de momento. Verifique a internet e tente novamente.', true);
+            } finally {
+                btn.disabled = false;
+                label.textContent = old;
+            }
+        });
     }
 })();

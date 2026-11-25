@@ -1109,3 +1109,10 @@ html:not(.cinema) .portal-img { transform: none; }
     .portal-copy .pl > span { transform: none; }
     .portal-pre { display: none; }
 }
+
+/* formulário: estados extra */
+.form-success[hidden] { display: none; }
+.form-success.is-error { border-color: rgba(255, 110, 90, .5); background: rgba(255, 110, 90, .07); }
+.form-success.is-error .fs-icon { background: #ff6e5a; box-shadow: 0 0 20px rgba(255, 110, 90, .5); }
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form button[disabled] { opacity: .6; pointer-events: none; }

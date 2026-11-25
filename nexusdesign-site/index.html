@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nexus Design | A sua marca. Outra dimensão.</title>
+    <meta name="description" content="Nexus Design — estúdio digital. Criamos marcas e websites com personalidade, clareza e impacto visual para negócios que recusam passar despercebidos.">
+    <meta name="theme-color" content="#06080a">
+    <meta property="og:title" content="Nexus Design | A sua marca. Outra dimensão.">
+    <meta property="og:description" content="Marcas e websites com personalidade, clareza e impacto visual.">
+    <meta property="og:image" content="/static/img/brand/nexus-studio.webp">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23d8ff3c'/%3E%3Cpath d='M9 24V8l14 16V8' fill='none' stroke='%2306080a' stroke-width='3.4' stroke-linejoin='miter'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/static/img/brand/nexus-studio.webp">
+    <link rel="stylesheet" href="/static/css/nexus.css">
+    <script>if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('cinema');</script>
+</head>
+<body>
+
+    <!-- ============ PORTA DE ENTRADA / INTRO ============ -->
+    
+    <div id="intro" class="intro" role="dialog" aria-label="A entrar no site Nexus Design">
+        <div class="intro-door intro-door--top"></div>
+        <div class="intro-door intro-door--bot"></div>
+        <div class="intro-grid" aria-hidden="true"></div>
+        <div class="intro-scan" aria-hidden="true"></div>
+        <div class="intro-beam" aria-hidden="true"></div>
+
+        <div class="intro-content">
+            <div class="intro-hud intro-hud--tl">NEXUS DESIGN — DIGITAL STUDIO</div>
+            <div class="intro-hud intro-hud--tr"><span class="intro-blink"></span> SYS.BOOT</div>
+
+            <div class="intro-center">
+                <svg class="intro-logo" viewBox="0 0 160 160" aria-hidden="true">
+                    <circle class="il-ring" cx="80" cy="80" r="76" fill="none" stroke="rgba(216,255,60,.45)" stroke-width="1" stroke-dasharray="2 7"/>
+                    <circle class="il-ring2" cx="80" cy="80" r="68" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1" stroke-dasharray="40 12 4 12"/>
+                    <rect class="il-frame" x="26" y="26" width="108" height="108" rx="8" fill="#d8ff3c" fill-opacity="0" stroke="#d8ff3c" stroke-width="2"/>
+                    <path class="il-n" d="M54 110 V50 L106 110 V50" fill="none" stroke="#d8ff3c" stroke-width="11" stroke-linejoin="miter" stroke-linecap="butt"/>
+                </svg>
+                <div class="intro-word">
+                    <div class="intro-nexus" data-text="NEXUS">NEXUS</div>
+                    <div class="intro-design">DESIGN</div>
+                </div>
+                <button class="intro-enter" type="button" aria-label="Entrar no site">
+                    <span>Entrar na nova dimensão</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                </button>
+                <div class="intro-hint">Clique ou prima <kbd>Enter</kbd></div>
+            </div>
+
+            <ul class="intro-log" aria-hidden="true">
+                <li>&gt; A iniciar Nexus OS</li>
+                <li>&gt; A carregar identidade visual ........ <b>OK</b></li>
+                <li>&gt; A compilar projetos [03] ........ <b>OK</b></li>
+                <li>&gt; A calibrar luz e movimento ........ <b>OK</b></li>
+                <li>&gt; Acesso autorizado.</li>
+            </ul>
+            <div class="intro-count" aria-hidden="true"><span class="intro-num">000</span><small>%</small></div>
+            <div class="intro-bar" aria-hidden="true"><i></i></div>
+        </div>
+    </div>
+    
+
+    <!-- ============ CURSOR / HUD ============ -->
+    <div class="cursor" aria-hidden="true"><div class="cur-ring"><span class="cur-label"></span></div><div class="cur-dot"></div></div>
+    <div class="progress" aria-hidden="true"><i></i></div>
+    <div class="hud hud--l" aria-hidden="true"><span class="hud-dot"></span><span class="hud-sec">// 00 — INÍCIO</span></div>
+    <div class="hud hud--r" aria-hidden="true">SCROLL <span class="hud-pct">000</span>%</div>
+
+    <!-- ============ HEADER ============ -->
+    <header class="hdr">
+        <a href="#topo" class="logo" aria-label="Nexus Design — início">
+            <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="5" fill="#d8ff3c"/><path d="M9.5 24V8l13 16V8" fill="none" stroke="#06080a" stroke-width="3.4"/></svg>
+            <span class="logo-text"><b>NEXUS</b><small>DESIGN</small></span>
+        </a>
+        <nav class="nav" aria-label="Principal">
+            <a href="#projetos">Projetos</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#processo">Processo</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <a href="#contacto" class="btn btn--sm hdr-cta" data-magnetic><span>Vamos ao seu projeto</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+        <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false"><i></i><i></i></button>
+    </header>
+
+    <div class="mnav" aria-hidden="true">
+        <nav>
+            <a href="#projetos"><small>01</small>Projetos</a>
+            <a href="#servicos"><small>02</small>Serviços</a>
+            <a href="#processo"><small>03</small>Processo</a>
+            <a href="#contacto"><small>04</small>Contacto</a>
+        </nav>
+        <p class="label">Nexus Design — Digital Studio</p>
+    </div>
+
+    <main id="topo">
+
+        <!-- ============ HERO ============ -->
+        <section class="hero" data-hud="// 00 — INÍCIO">
+            <canvas class="hero-canvas" aria-hidden="true"></canvas>
+            <div class="hero-spot" aria-hidden="true"></div>
+            <div class="hero-vignette" aria-hidden="true"></div>
+
+            <div class="hero-inner">
+                <p class="label hero-kicker"><span class="dot"></span><span data-scramble>NEXUS / DIGITAL STUDIO</span></p>
+                <h1 class="hero-title" aria-label="A sua marca. Outra dimensão.">
+                    <span class="line"><span class="split">A SUA MARCA.</span><svg class="hero-arrow" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32L32 8M14 8h18v18" fill="none" stroke="currentColor" stroke-width="3.2"/></svg></span>
+                    <span class="line"><span class="split">OUTRA</span></span>
+                    <span class="line"><span class="split lime">DIMENSÃO.</span></span>
+                </h1>
+
+                <div class="hero-side">
+                    <p class="hero-lead">O seu negócio tem muito para dar.<br>Vamos fazer com que isso se veja.</p>
+                    <p class="hero-sub">Criamos marcas e websites com personalidade, clareza e um caminho simples até ao próximo contacto.</p>
+                    <div class="hero-ctas">
+                        <a href="#contacto" class="btn" data-magnetic><span>Vamos ao seu projeto</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                        <a href="#projetos" class="link-arrow">Ver projetos <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-foot">
+                <div class="stat"><b>03</b><span>Projetos online</span></div>
+                <div class="stat"><b>100%</b><span>Design à medida</span></div>
+                <div class="stat"><b>24h</b><span>Tempo de resposta</span></div>
+                <div class="scroll-cue"><span class="label">Scroll para explorar</span><i></i></div>
+            </div>
+        </section>
+
+        <!-- ============ PORTAL: voo através das letras ============ -->
+        <section class="portal" data-hud="// 01 — NOVA DIMENSÃO" aria-label="Nexus Design — nova dimensão">
+            <div class="portal-stage">
+                <img class="portal-img" src="/static/img/brand/nexus-studio.webp" alt="Identidade Nexus Design: cartões de visita, letra N em verde lima e escultura cromada" width="1316" height="423">
+                <div class="portal-mask" aria-hidden="true"><span class="pm-word">NE<span class="pm-x">X</span>US</span></div>
+                <div class="portal-shade" aria-hidden="true"></div>
+                <div class="portal-sweep" aria-hidden="true"></div>
+            </div>
+            <p class="portal-pre portal-pre--top" aria-hidden="true">Ideias que <em>se veem.</em></p>
+            <p class="portal-pre portal-pre--bot" aria-hidden="true">Experiências que <em>se sentem.</em></p>
+            <div class="portal-hud portal-hud--tl label">Nexus Design / Nova dimensão</div>
+            <div class="portal-hud portal-hud--tr label">Estratégia × Design × Digital</div>
+            <div class="portal-copy">
+                <p class="label portal-copy-k">Boa imagem. Boa experiência.</p>
+                <h2><span class="pl"><span>Uma só</span></span> <span class="pl"><span class="serif">direção.</span></span></h2>
+            </div>
+        </section>
+
+        <!-- ============ MANIFESTO ============ -->
+        <section class="manifesto" data-hud="// 02 — MANIFESTO">
+            <p class="label sec-label"><span class="dot"></span><span data-scramble>02 — Manifesto</span></p>
+            <p class="manifesto-text">
+                Isto não é só design. É a forma como o seu negócio é <strong>visto</strong>, <strong>sentido</strong> e <strong>lembrado</strong>. Criamos marcas e websites que fazem as pessoas parar o scroll, confiar à primeira vista e <strong>dar o próximo passo.</strong>
+            </p>
+        </section>
+
+        <!-- ============ MARQUEE ============ -->
+        <section class="marquee" aria-label="Áreas de trabalho">
+            
+            <div class="mq-row">
+                <span class="mq-item">Web Design</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Branding</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item">Estratégia</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Digital</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item">Performance</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Identidade</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item">Web Design</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Branding</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item">Estratégia</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Digital</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item">Performance</span><span class="mq-star" aria-hidden="true">✦</span><span class="mq-item o">Identidade</span><span class="mq-star" aria-hidden="true">✦</span>
+            </div>
+            <div class="mq-row mq-row--rev" aria-hidden="true">
+                <span class="mq-item o">Identidade</span><span class="mq-star">✦</span><span class="mq-item">Performance</span><span class="mq-star">✦</span><span class="mq-item o">Digital</span><span class="mq-star">✦</span><span class="mq-item">Estratégia</span><span class="mq-star">✦</span><span class="mq-item o">Branding</span><span class="mq-star">✦</span><span class="mq-item">Web Design</span><span class="mq-star">✦</span><span class="mq-item o">Identidade</span><span class="mq-star">✦</span><span class="mq-item">Performance</span><span class="mq-star">✦</span><span class="mq-item o">Digital</span><span class="mq-star">✦</span><span class="mq-item">Estratégia</span><span class="mq-star">✦</span><span class="mq-item o">Branding</span><span class="mq-star">✦</span><span class="mq-item">Web Design</span><span class="mq-star">✦</span>
+            </div>
+        </section>
+
+        <!-- ============ PROJETOS: showroom cinematográfico ============ -->
+        <section id="projetos" class="work" data-hud="// 03 — PROJETOS">
+
+            <!-- Versão cinematográfica (ativada por JavaScript) -->
+            <div class="show" aria-hidden="true">
+                <div class="show-viewport">
+                    <div class="show-stage">
+                        <div class="show-wall"></div>
+                        
+                        <div class="niche" style="--p: #e7a49c; --i: 0">
+                            <div class="niche-inner"></div>
+                            <div class="niche-fixture"></div>
+                            <div class="niche-cone"></div>
+                            <div class="niche-screen">
+                                <div class="ns-bar"><i></i><i></i><i></i><span>inesrosacontabilista.pt</span></div>
+                                <img src="/static/img/projects/ines-rosa.webp" alt="" width="1900" height="900">
+                                <div class="ns-glare"></div>
+                            </div>
+                            <div class="niche-plinth"><span>01</span></div>
+                            <div class="niche-pool"></div>
+                            <div class="niche-dark"></div>
+                        </div>
+                        <div class="reflect" style="--i: 0"><img src="/static/img/projects/ines-rosa.webp" alt=""></div>
+                        
+                        <div class="niche" style="--p: #3fe0b8; --i: 1">
+                            <div class="niche-inner"></div>
+                            <div class="niche-fixture"></div>
+                            <div class="niche-cone"></div>
+                            <div class="niche-screen">
+                                <div class="ns-bar"><i></i><i></i><i></i><span>pointfino.pt</span></div>
+                                <img src="/static/img/projects/pointfino.webp" alt="" width="1900" height="900">
+                                <div class="ns-glare"></div>
+                            </div>
+                            <div class="niche-plinth"><span>02</span></div>
+                            <div class="niche-pool"></div>
+                            <div class="niche-dark"></div>
+                        </div>
+                        <div class="reflect" style="--i: 1"><img src="/static/img/projects/pointfino.webp" alt=""></div>
+                        
+                        <div class="niche" style="--p: #eadbb8; --i: 2">
+                            <div class="niche-inner"></div>
+                            <div class="niche-fixture"></div>
+                            <div class="niche-cone"></div>
+                            <div class="niche-screen">
+                                <div class="ns-bar"><i></i><i></i><i></i><span>casadaserra.online</span></div>
+                                <img src="/static/img/projects/casa-da-serra.webp" alt="" width="1900" height="900">
+                                <div class="ns-glare"></div>
+                            </div>
+                            <div class="niche-plinth"><span>03</span></div>
+                            <div class="niche-pool"></div>
+                            <div class="niche-dark"></div>
+                        </div>
+                        <div class="reflect" style="--i: 2"><img src="/static/img/projects/casa-da-serra.webp" alt=""></div>
+                        
+                        <div class="show-floor"></div>
+                    </div>
+                </div>
+                <div class="show-vignette"></div>
+                <div class="show-shade"></div>
+
+                <div class="show-head">
+                    <p class="label sec-label"><span class="dot"></span><span data-scramble>03 — A coleção</span></p>
+                    <h2 class="show-title">Projetos que já<br>vivem <span class="serif lime">online.</span><sup>(03)</sup></h2>
+                </div>
+
+                
+                <div class="show-info" style="--p: #e7a49c">
+                    <p class="label si-index"><span>01</span> / 03 — Web Design / Contabilidade<em class="badge-new">Novo</em></p>
+                    <h3 class="si-name">Inês <span class="serif">Rosa</span></h3>
+                    <p class="si-sub">Contabilista Certificada</p>
+                    <p class="si-desc">Uma presença digital elegante e próxima para uma contabilista certificada. Tipografia clássica, tons bordeaux e uma mensagem clara: perceber os impostos não tem de ser complicado.</p>
+                    <ul class="proj-tags"><li>Web Design</li><li>Identidade</li><li>Sessões online</li></ul>
+                    
+                    <a class="proj-link" href="https://inesrosacontabilista.pt/" target="_blank" rel="noopener" tabindex="-1"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                    
+                </div>
+                
+                <div class="show-info" style="--p: #3fe0b8">
+                    <p class="label si-index"><span>02</span> / 03 — Web Design / Barbearia</p>
+                    <h3 class="si-name">Point <span class="serif">Fino</span></h3>
+                    <p class="si-sub">Barbershop · Covilhã</p>
+                    <p class="si-desc">Uma presença escura, precisa e com carácter, tal como os cortes. Marcação direta, equipa e localização a um toque de distância.</p>
+                    <ul class="proj-tags"><li>Web Design</li><li>Marcações</li><li>Mobile first</li></ul>
+                    
+                    <a class="proj-link" href="https://pointfino.pt" target="_blank" rel="noopener" tabindex="-1"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                    
+                </div>
+                
+                <div class="show-info" style="--p: #eadbb8">
+                    <p class="label si-index"><span>03</span> / 03 — Web Design / Turismo</p>
+                    <h3 class="si-name">Casa da <span class="serif">Serra</span></h3>
+                    <p class="si-sub">Penhas da Saúde · Serra da Estrela</p>
+                    <p class="si-desc">Uma casa na serra contada em vídeo de ecrã inteiro. A paisagem, a neve e o convite a abrandar dão o tom a toda a experiência.</p>
+                    <ul class="proj-tags"><li>Web Design</li><li>Vídeo</li><li>Alojamento</li></ul>
+                    
+                    <a class="proj-link" href="https://casadaserra.online/" target="_blank" rel="noopener" tabindex="-1"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                    
+                </div>
+                
+
+                <div class="show-end">
+                    <p class="label"><span class="dot"></span>Próximo capítulo</p>
+                    <h3>O próximo projeto<br>pode ser o <span class="serif lime">seu.</span></h3>
+                    <a href="#contacto" class="btn" data-magnetic tabindex="-1"><span>Começar agora</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+                </div>
+
+                <div class="show-dots"><i style="--p: #e7a49c"></i><i style="--p: #3fe0b8"></i><i style="--p: #eadbb8"></i></div>
+                <div class="work-progress"><i></i></div>
+            </div>
+
+            <!-- Versão acessível / sem animação: lista simples -->
+            <div class="work-list">
+                <div class="work-intro">
+                    <p class="label sec-label"><span class="dot"></span>03 — A coleção</p>
+                    <h2 class="show-title">Projetos que já<br>vivem <span class="serif lime">online.</span></h2>
+                </div>
+                
+                <article class="proj" style="--p: #e7a49c">
+                    <div class="proj-media">
+                        <div class="browser" data-cursor="Ampliar" data-zoom="/static/img/projects/ines-rosa.webp" data-alt="Inês Rosa" role="button" tabindex="0" aria-label="Ampliar imagem do projeto Inês Rosa">
+                            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">inesrosacontabilista.pt</span></div>
+                            <div class="browser-view"><img src="/static/img/projects/ines-rosa.webp" alt="Página inicial do website Inês Rosa" loading="lazy" width="1900" height="900"></div>
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <p class="label si-index"><span>01</span> / 03 — Web Design / Contabilidade<em class="badge-new">Novo</em></p>
+                        <h3 class="si-name">Inês <span class="serif">Rosa</span></h3>
+                        <p class="si-sub">Contabilista Certificada</p>
+                        <p class="si-desc">Uma presença digital elegante e próxima para uma contabilista certificada. Tipografia clássica, tons bordeaux e uma mensagem clara: perceber os impostos não tem de ser complicado.</p>
+                        <ul class="proj-tags"><li>Web Design</li><li>Identidade</li><li>Sessões online</li></ul>
+                        
+                        <a class="proj-link" href="https://inesrosacontabilista.pt/" target="_blank" rel="noopener"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                        
+                    </div>
+                </article>
+                
+                <article class="proj" style="--p: #3fe0b8">
+                    <div class="proj-media">
+                        <div class="browser" data-cursor="Ampliar" data-zoom="/static/img/projects/pointfino.webp" data-alt="PointFino" role="button" tabindex="0" aria-label="Ampliar imagem do projeto PointFino">
+                            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">pointfino.pt</span></div>
+                            <div class="browser-view"><img src="/static/img/projects/pointfino.webp" alt="Página inicial do website PointFino" loading="lazy" width="1900" height="900"></div>
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <p class="label si-index"><span>02</span> / 03 — Web Design / Barbearia</p>
+                        <h3 class="si-name">Point <span class="serif">Fino</span></h3>
+                        <p class="si-sub">Barbershop · Covilhã</p>
+                        <p class="si-desc">Uma presença escura, precisa e com carácter, tal como os cortes. Marcação direta, equipa e localização a um toque de distância.</p>
+                        <ul class="proj-tags"><li>Web Design</li><li>Marcações</li><li>Mobile first</li></ul>
+                        
+                        <a class="proj-link" href="https://pointfino.pt" target="_blank" rel="noopener"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                        
+                    </div>
+                </article>
+                
+                <article class="proj" style="--p: #eadbb8">
+                    <div class="proj-media">
+                        <div class="browser" data-cursor="Ampliar" data-zoom="/static/img/projects/casa-da-serra.webp" data-alt="Casa da Serra" role="button" tabindex="0" aria-label="Ampliar imagem do projeto Casa da Serra">
+                            <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="browser-url">casadaserra.online</span></div>
+                            <div class="browser-view"><img src="/static/img/projects/casa-da-serra.webp" alt="Página inicial do website Casa da Serra" loading="lazy" width="1900" height="900"></div>
+                        </div>
+                    </div>
+                    <div class="proj-info">
+                        <p class="label si-index"><span>03</span> / 03 — Web Design / Turismo</p>
+                        <h3 class="si-name">Casa da <span class="serif">Serra</span></h3>
+                        <p class="si-sub">Penhas da Saúde · Serra da Estrela</p>
+                        <p class="si-desc">Uma casa na serra contada em vídeo de ecrã inteiro. A paisagem, a neve e o convite a abrandar dão o tom a toda a experiência.</p>
+                        <ul class="proj-tags"><li>Web Design</li><li>Vídeo</li><li>Alojamento</li></ul>
+                        
+                        <a class="proj-link" href="https://casadaserra.online/" target="_blank" rel="noopener"><span>Visitar o website</span><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+                        
+                    </div>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- ============ SERVIÇOS ============ -->
+        <section id="servicos" class="services" data-hud="// 04 — SERVIÇOS">
+            <div class="sec-head">
+                <p class="label sec-label"><span class="dot"></span><span data-scramble>04 — O que fazemos</span></p>
+                <h2 class="sec-title" data-reveal>Soluções práticas.<br><span class="dim">Impacto real.</span></h2>
+            </div>
+            <div class="svc-grid">
+                
+                <article class="svc">
+                    <div class="svc-top">
+                        <span class="label">S/01</span>
+                        <span class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="18" rx="2"/><path d="M3 11h26M11 28h10M16 24v4"/></svg>
+                            
+                        </span>
+                    </div>
+                    <h3>Web Design &amp; Performance</h3>
+                    <p>Websites ultra-rápidos, modernos e otimizados para converter visitantes em clientes.</p>
+                    <ul><li>Websites feitos à medida</li><li>Carregamento ultra-rápido</li><li>Perfeito no telemóvel</li><li>Foco em contactos e vendas</li></ul>
+                    <a href="#contacto" class="svc-more">Falar sobre isto <span aria-hidden="true">↗</span></a>
+                </article>
+                
+                <article class="svc">
+                    <div class="svc-top">
+                        <span class="label">S/02</span>
+                        <span class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M11 22V10l10 12V10"/></svg>
+                            
+                        </span>
+                    </div>
+                    <h3>Identidade Visual &amp; Rebranding</h3>
+                    <p>Logotipos marcantes e posicionamento de marca que transmite autoridade no mercado.</p>
+                    <ul><li>Logotipo e sistema visual</li><li>Paleta e tipografia</li><li>Aplicações de marca</li><li>Guia de identidade</li></ul>
+                    <a href="#contacto" class="svc-more">Falar sobre isto <span aria-hidden="true">↗</span></a>
+                </article>
+                
+                <article class="svc">
+                    <div class="svc-top">
+                        <span class="label">S/03</span>
+                        <span class="svc-icon" aria-hidden="true">
+                            <svg viewBox="0 0 32 32"><path d="M4 26l8-9 6 5 10-13"/><path d="M21 9h7v7"/></svg>
+                        </span>
+                    </div>
+                    <h3>Transformação Digital de Empresas</h3>
+                    <p>Estratégias visuais completas para dar uma nova faceta poderosa ao seu negócio.</p>
+                    <ul><li>Estratégia digital</li><li>Presença online organizada</li><li>Conteúdos com intenção</li><li>Acompanhamento contínuo</li></ul>
+                    <a href="#contacto" class="svc-more">Falar sobre isto <span aria-hidden="true">↗</span></a>
+                </article>
+                
+            </div>
+        </section>
+
+        <!-- ============ PROCESSO ============ -->
+        <section id="processo" class="process" data-hud="// 05 — PROCESSO">
+            <div class="process-head">
+                <p class="label sec-label"><span class="dot"></span><span data-scramble>05 — Como trabalhamos</span></p>
+                <h2 class="sec-title" data-reveal>Simples.<br>Transparente.<br><span class="lime">Sem letras miúdas.</span></h2>
+                <p class="process-note" data-reveal>Quatro passos claros, do primeiro olá ao site online a brilhar.</p>
+            </div>
+            <ol class="steps">
+                <li class="beam" aria-hidden="true"><i class="beam-fill"></i></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">01</span><h3>Conversa inicial</h3><p>Ouvimos o que precisa e percebemos exatamente o objetivo do seu negócio.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">02</span><h3>Ideia &amp; visual</h3><p>Desenhamos uma estrutura moderna, limpa e apelativa para os seus clientes.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">03</span><h3>Construção</h3><p>Mãos à obra com tecnologia rápida, segura e perfeita em telemóveis.</p></li>
+                <li class="step"><span class="step-node"></span><span class="step-n">04</span><h3>Lançamento</h3><p>O site fica online, pronto a receber contactos e novos clientes.</p></li>
+            </ol>
+        </section>
+
+        <!-- ============ CTA + CONTACTO ============ -->
+        <section id="contacto" class="contact" data-hud="// 06 — CONTACTO">
+            <h2 class="cta-big" aria-label="Vamos criar a sua próxima dimensão">
+                <span class="cta-line">Vamos criar</span>
+                <span class="cta-line">a sua próxima</span>
+                <span class="cta-line">dimensão.</span>
+            </h2>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p class="label sec-label"><span class="dot"></span><span data-scramble>06 — Fale connosco</span></p>
+                    <h3>Conte-nos a sua ideia.<br><span class="dim">Nós tratamos do resto.</span></h3>
+                    <ul class="contact-list">
+                        <li><b>24h</b><span>Resposta garantida</span></li>
+                        <li><b>0€</b><span>Primeira conversa, sem compromisso</span></li>
+                        <li><b>PT</b><span>Portugal · Presencial ou remoto</span></li>
+                    </ul>
+                </div>
+
+                <div class="form-wrap">
+                    <div class="form-glow" aria-hidden="true"></div>
+                    
+                    <div class="form-success" role="status" hidden>
+                        <span class="fs-icon" aria-hidden="true">✓</span>
+                        <p></p>
+                    </div>
+                    
+                    <form action="https://api.web3forms.com/submit" method="POST" class="form" data-web3forms>
+                        <input type="hidden" name="access_key" value="">
+                        <input type="hidden" name="subject" value="🚀 Nova lead no site Nexus Design">
+                        <input type="hidden" name="from_name" value="Site Nexus Design">
+                        <input type="hidden" name="redirect" value="https://nexusdesign.online/?enviado=1#contacto">
+                        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    
+                        <div class="form-row">
+                            <label class="field">
+                                <input type="text" name="nome" required placeholder=" " autocomplete="name">
+                                <span>O seu nome *</span>
+                            </label>
+                            <label class="field">
+                                <input type="text" name="empresa" placeholder=" " autocomplete="organization">
+                                <span>Empresa</span>
+                            </label>
+                        </div>
+                        <label class="field">
+                            <input type="email" name="email" required placeholder=" " autocomplete="email">
+                            <span>O seu e-mail *</span>
+                        </label>
+                        <label class="field">
+                            <textarea name="mensagem" rows="4" required placeholder=" "></textarea>
+                            <span>Em que podemos ajudar? *</span>
+                        </label>
+                        <button type="submit" class="btn btn--full" data-magnetic><span>Enviar mensagem</span><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 11L11 3M5 3h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" data-hud="// 07 — FIM">
+        <div class="footer-top">
+            <p class="footer-tag">Boa imagem.<br>Boa experiência.<br><span class="lime">Uma só direção.</span></p>
+            <nav class="footer-nav" aria-label="Rodapé">
+                <a href="#projetos">Projetos</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#processo">Processo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <a href="#topo" class="to-top" aria-label="Voltar ao topo">↑</a>
+        </div>
+        <div class="footer-mark" aria-hidden="true"><span>N</span><span>E</span><span>X</span><span>U</span><span>S</span></div>
+        <div class="footer-glow" aria-hidden="true"></div>
+        <div class="footer-bot label">
+            <span>&copy; 2026 Nexus Design. Todos os direitos reservados.</span>
+            <span>Estratégia × Design × Digital</span>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Imagem do projeto">
+        <button class="lb-close" type="button" aria-label="Fechar">×</button>
+        <img alt="">
+    </div>
+
+    <script src="/static/vendor/gsap.min.js"></script>
+    <script src="/static/vendor/ScrollTrigger.min.js"></script>
+    <script src="/static/vendor/lenis.min.js"></script>
+    <script src="/static/js/nexus.js"></script>
+</body>
+</html>
